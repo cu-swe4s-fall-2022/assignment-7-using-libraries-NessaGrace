@@ -50,6 +50,10 @@ class TestDataProcessor(BaseTestCases.BaseTest):
                                  arr_unif_fail,
                                  array_unif)
 
+        # test error raising:
+
+        self.assertRaises(TypeError, dp.get_random_matrix, 'a', 'b')
+
 
 if __name__ == '__main__':
     unittest.main()
