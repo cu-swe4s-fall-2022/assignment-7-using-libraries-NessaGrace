@@ -52,7 +52,10 @@ class TestDataProcessor(BaseTestCases.BaseTest):
 
         # test error raising:
 
-        self.assertRaises(TypeError, dp.get_random_matrix, 'a', 'b')
+        self.assertRaises(TypeError, dp.get_random_matrix, 'a', 'b', 7)
+        self.assertRaises(TypeError, dp.get_random_matrix, 2, 2, 'a')
+        self.assertRaises(ValueError, dp.get_random_matrix, -1, 0, 7)
+        self.assertRaises(ValueError, dp.get_random_matrix, 2, 2, 0)
 
 
 if __name__ == '__main__':
