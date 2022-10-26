@@ -41,6 +41,16 @@ class TestDataProcessor(BaseTestCases.BaseTest):
                                  array2D_fcn,
                                  self.arr_3D)
 
+        # test if random array is produced
+        np.random.seed(7)
+        for i in range(5):
+            array_rand_test = np.concatenate([np.random.rand(i)])
+        #print(array_rand_test)
+        arr_unif_test = array_rand_test.reshape(2,2)
+        #print(arr_unif_test)
+        array_unif = dp.get_random_matrix(2,2)
+        np.testing.assert_array_equal(arr_unif_test, array_unif)
+
 
 if __name__ == '__main__':
     unittest.main()
