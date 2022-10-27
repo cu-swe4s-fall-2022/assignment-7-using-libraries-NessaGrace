@@ -106,6 +106,28 @@ class TestDataProcessor(BaseTestCases.BaseTest):
         # test error raising:
         self.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'my_file')
 
+    def test_write_matrix_to_file(self):
+        np.random.seed(7)
+        #file_matrix_fcn = dp.write_matrix_to_file(2, 2, 7, 'twoDArray.csv')
+        matrix = dp.get_random_matrix(2, 2, 7)
+        with open('twoDArrayTest.csv', 'w',) as f:
+            writer = csv.writer(f)
+            writer.writerow(matrix)
+        g = open('twoDArray.csv', 'r')
+        A = []
+        for line in g:
+            A.append(line.rstrip())
+        g.close()
+
+        h = open('twoDArrayTest.csv', 'r')
+        B = []
+        for line in h:
+            B.append(line.rstrip())
+        #print(B)
+        h.close()
+
+        self.assertEqual(A, B)
+
 
 if __name__ == '__main__':
     unittest.main()
