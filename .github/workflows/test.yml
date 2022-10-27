@@ -46,4 +46,4 @@ jobs:
           environment-file: environment.yml
       - run: |
              cd tests
-             bash test_search.sh
+             bash test_plotter.sh
