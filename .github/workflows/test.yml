@@ -33,15 +33,17 @@ jobs:
       - run: |
              cd tests
              python -m unittest test_data_processor
-  #run_functional_tests:
-   # runs-on: windows-latest
-    #defaults:
-     # run:
-      #  shell: bash -l {0}
-    #steps:
-     # - uses: actions/checkout@v2
-      #- uses: conda-incubator/setup-miniconda@v2
-       # with:
-        #  activate-environment: hw5
-         # environment-file: environment.yml
-     # - run: bash test_search.sh
+  run_functional_tests:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: hw7
+          environment-file: environment.yml
+      - run: |
+             cd tests
+             bash test_search.sh
