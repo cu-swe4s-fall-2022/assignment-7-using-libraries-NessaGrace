@@ -1,7 +1,9 @@
 import unittest
 import os
 import numpy as np
+import pandas as pd
 import sys
+import csv
 
 sys.path.append('../')
 
@@ -15,12 +17,21 @@ class BaseTestCases:
 
 class TestDataProcessor(BaseTestCases.BaseTest):
 
-    # note: class set up, tear down used for previous test versions
-#    @classmethod
- #   def setUpClass(cls):
-  #      cls.arr_2D = np.array([[1,2], [3,4]], dtype='f')
-   #     cls.arr_1D = np.array([1,2], dtype='f')
-    #    cls.arr_3D = np.array([[1,2], [3,4], [5,6]], dtype='f')
+    #@classmethod
+    #def setUpClass(cls):
+       # cls.test_csv = "iris.data"
+      #  f = open(cls.test_csv, 'r')
+
+       # test = ['apple', 'orange', 'strawberry', 'banana', 'kiwi']
+
+        #for string in test:
+         #   f.write(string + '\n')
+
+     #   f.close()
+
+    #@classmethod
+    #def tearDownClass(cls):
+        #os.remove(cls.test_csv)
 
 
     def test_get_random_matrix(self):
@@ -56,6 +67,16 @@ class TestDataProcessor(BaseTestCases.BaseTest):
         self.assertRaises(TypeError, dp.get_random_matrix, 2, 2, 'a')
         self.assertRaises(ValueError, dp.get_random_matrix, -1, 0, 7)
         self.assertRaises(ValueError, dp.get_random_matrix, 2, 2, 0)
+
+    def test_get_file_dimensions(self):
+
+        # test if csv is read in correctly
+        file_contents_fcn = dp.get_file_dimensions('../iris.data')
+        with open('../iris.data', newline='') as csvfile:
+            file_contents_test = csv.reader(csvfile, delimiter=',')
+            #for row in file_contents_test:
+             #   print(' '.join(row))
+        self.assertEqual(file_contents_fcn, file_contents_test)
 
 
 if __name__ == '__main__':
