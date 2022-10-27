@@ -13,7 +13,7 @@ measurement_names = ['sepal_width', 'sepal_length', 'petal_width',
 plt.boxplot(iris[measurement_names], labels = measurement_names)
 plt.ylabel('cm')
 plt.savefig('iris_boxplot.png')
-plt.show()
+#plt.show()
 
 # produce scatterplot of petal length vs. petal width for all iris species
 for species_name in set(iris['iris_species']):
@@ -24,7 +24,7 @@ plt.legend()
 plt.xlabel('petal_width (cm)')
 plt.ylabel('petal_length (cm)')
 plt.savefig('petal_length_v_width_scatter.png')
-plt.show()
+#plt.show()
 
 # produce both boxplot and scatterplot side by side
 fig, axes = plt.subplots(2,2)
@@ -59,4 +59,4 @@ for i in range(2):
 
 
 plt.savefig('multi_panel_figure.png')
-plt.show()
+#plt.show()
