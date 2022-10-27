@@ -19,9 +19,10 @@ def get_random_matrix(num_rows, num_columns, prime):
     return array_2D
 
 def get_file_dimensions(file_name):
-    #with open(file_name, newline='') as csvfile:
     file_contents = pd.read_csv(file_name, sep=',', header=None)
-    return file_contents
+    file_dim = file_contents.shape
+    return file_dim
+    raise FileNotFoundError('file not found')
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
 	return None
