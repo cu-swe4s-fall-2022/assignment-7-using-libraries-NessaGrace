@@ -103,6 +103,9 @@ class TestDataProcessor(BaseTestCases.BaseTest):
         self.assertEqual(file_dim_fcn, file_dim_test)
         self.assertNotEqual(file_dim_fcn, (151,5))
 
+        # test error raising:
+        self.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'my_file')
+
 
 if __name__ == '__main__':
     unittest.main()
