@@ -93,6 +93,15 @@ class TestDataProcessor(BaseTestCases.BaseTest):
         file_contents_test = pd.read_csv('../iris.data', sep=',', header=None)
         pd.testing.assert_frame_equal(file_contents_fcn, file_contents_test)
 
+        # test if dimensions of tabular data outputted correctly
+        file_dim_fcn = dp.get_file_dimensions('../iris.data')
+        num_rows = len(file_contents_test.index)
+        columns = file_contents_test.columns
+        num_cols = len(columns)
+        file_dim_test = (num_rows, num_cols)
+        self.assertEqual(file_dim_fcn, file_dim_test)
+        self.assertNotEqual(file_dim_fcn, (151,5))
+
 
 if __name__ == '__main__':
     unittest.main()
