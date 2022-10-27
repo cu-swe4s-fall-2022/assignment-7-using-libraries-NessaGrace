@@ -2,6 +2,7 @@ import unittest
 import os
 import numpy as np
 import pandas as pd
+#from pandas.testing import assert_frame_equal
 import sys
 import csv
 
@@ -16,23 +17,6 @@ class BaseTestCases:
             self.assertEqual(x, 4)
 
 class TestDataProcessor(BaseTestCases.BaseTest):
-
-    #@classmethod
-    #def setUpClass(cls):
-       # cls.test_csv = "iris.data"
-      #  f = open(cls.test_csv, 'r')
-
-       # test = ['apple', 'orange', 'strawberry', 'banana', 'kiwi']
-
-        #for string in test:
-         #   f.write(string + '\n')
-
-     #   f.close()
-
-    #@classmethod
-    #def tearDownClass(cls):
-        #os.remove(cls.test_csv)
-
 
     def test_get_random_matrix(self):
 
@@ -71,12 +55,43 @@ class TestDataProcessor(BaseTestCases.BaseTest):
     def test_get_file_dimensions(self):
 
         # test if csv is read in correctly
+        #WORKS file_contents_fcn = dp.get_file_dimensions('../iris.data')
+       
+        #file_contents_fcn.columns = [''] * len(file_contents_fcn.columns)
+        #file_contents_fcn = file_contents_fcn.astype('object').dtypes
+        #file_contents_fcn = file_contents_fcn.astype('object').dtypes
+        #for row in file_contents_fcn:
+         #   print(row)
+        #print(type(file_contents_fcn))
+        
+      # WORKS print(file_contents_fcn)
+       # rows = []
+        #with open('../iris.data', newline='') as csvfile:
+         #   file_contents = csv.reader(csvfile, delimiter=',')
+          #  for row in file_contents:
+           #     file_contents = rows.append(row)
+        
+        #print(rows)
+        
+        #WORKS file_contents_test = pd.DataFrame(rows)
+        #file_contents_test = file_contents_test.drop(150)
+        
+        #file_contents_test.iloc[:,0] = None
+        # file_contents_test.columns = [''] * len(file_contents_test.columns)
+        #file_contents_test.rows = [''] * len(file_contents_test.rows)
+        #file_contents_test = file_contents_test.squeeze()
+        #print(type(file_contents_test))
+        #file_contents_test.astype('float64').dtypes
+
+        #WORKS print(file_contents_test)
+        #pd.testing.assert_frame_equal(file_contents_fcn, file_contents_test, check_dtype=False)
+
+        #self.assertEqual(file_contents_fcn, file_contents_test)
+
+
         file_contents_fcn = dp.get_file_dimensions('../iris.data')
-        with open('../iris.data', newline='') as csvfile:
-            file_contents_test = csv.reader(csvfile, delimiter=',')
-            #for row in file_contents_test:
-             #   print(' '.join(row))
-        self.assertEqual(file_contents_fcn, file_contents_test)
+        file_contents_test = pd.read_csv('../iris.data', sep=',', header=None)
+        pd.testing.assert_frame_equal(file_contents_fcn, file_contents_test)
 
 
 if __name__ == '__main__':
